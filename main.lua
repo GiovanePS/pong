@@ -1,18 +1,22 @@
-require("player")
+Object = require("classic")
+Player = require("player")
 require("ball")
 
 function love.load()
-	Player:load()
+	player1 = Player(1)
+	player2 = Player(2)
 	Ball:load()
 end
 
 function love.update(dt)
-	Player:update(dt)
+	player1:update(dt)
+	player2:update(dt)
 	Ball:update(dt)
 end
 
 function love.draw()
-	Player:draw()
+	player1:draw()
+	player2:draw()
 	Ball:draw()
 end
 

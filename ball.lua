@@ -5,7 +5,7 @@ function Ball:load()
 	self.y = love.graphics.getHeight() / 2
 	self.width = 20
 	self.height = 20
-	self.speed = 200
+	self.speed = 350
 	self.xVel = -self.speed
 	self.yVel = 0
 end
@@ -16,10 +16,17 @@ function Ball:update(dt)
 end
 
 function Ball:collide()
-	if checkColision(self, Player) then
+	local player1Collision = checkColision(self, player1)
+	local player2Collision = checkColision(self, player2)
+	if player1Collision or player2Collision then
 		self.xVel = -self.xVel
 		local middleBall = self.y + self.height / 2
-		local middlePlayer = Player.y + Player.height / 2
+		local middlePlayer
+		if player1Collision then
+			middlePlayer = player1.y + player1.height / 2
+		else
+			middlePlayer = player2.y + player2.height / 2
+		end
 		local collisionPosition = middleBall - middlePlayer
 		self.yVel = collisionPosition * 5
 	end
